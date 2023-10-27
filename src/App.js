@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  VideoTileGrid,
+  useMeetingManager
+} from 'amazon-chime-sdk-component-library-react';
+import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js';
+import axios from 'axios';
+const MyApp = () => {
+  const meetingManager = useMeetingManager();
 
-function App() {
+  const joinMeeting = async () => {
+    // Fetch the meeting and attendee data from your server application
+    const response = await axios.post('http://localhost:3001/api/join-meeting', { username:'krishna' });
+    const data = await response.data;
+
+    // Initialize the `MeetingSessionConfiguration`
+    const meetingSessionConfiguration = new MeetingSessionConfiguration(data.Meeting, data.Attendee);
+
+    // Use the join API to create a meeting session using the MeetingSessionConfiguration
+    await meetingManager.join(
+      meetingSessionConfiguration
+    );
+
+    await meetingManager.start();
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={joinMeeting}>Join</button>
+      <VideoTileGrid />
+    </>
   );
-}
+};
 
-export default App;
+export default MyApp;

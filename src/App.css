@@ -1,38 +1,119 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  /* Body styles */
+  body {
+	font-family: Arial, sans-serif;
+	/* background-color: #f0f0f0; */
+	background-color:rgb(66, 65, 65);
   }
-  to {
-    transform: rotate(360deg);
+  
+  /* Header styles */
+  
+  
+  label {
+	color: white;
+	font-size: 15px;
+
+	display: inline-block;
+	margin: 5px 0;
   }
+  
+  /* Button styles */
+  button {
+	background-color: blueviolet;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	margin: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+	background-color: darkviolet;
+	transform: scale(1.05);
+  }
+  
+  /* Input styles */
+  input[type="text"] {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	color: 'white';
+  }
+  
+  /* Audio controls */
+  audio {
+	display: none;
+  }
+  
+  /* Meeting info styles */
+  b {
+	color: blueviolet;
+	
+  }
+  
+  label[id="meeting-Id"],
+  label[id="meeting-link"],
+  label[id="Attendees"] {
+	display: inline-block;
+	margin: 10px 0;
+	padding-left: 20;
+	margin-left: 20;
+  }
+  
+  /* Video list styles
+  #video-list {
+	display: grid;
+	
+  } */
+  #video-list {
+	display: grid;
+	grid-template-columns: 1fr; /* 1 column */
+	grid-template-rows: 1fr; /* 1 row */
+	gap: 10px; /* Gap between items */
+  }
+  
+  #video-list video {
+	width: 80%; /* Make the video fill the grid item */
+	height: 80%; /* Make the video fill the grid item */
+	object-fit: cover; /* Ensure the video covers the grid item */
+	border: 2px solid #ccc;
+	border-radius: 5px;
+  }
+  
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+	label {
+	  font-size: 2px;
+	}
+  }
+  
+  @media (max-width: 480px) {
+	input[type="text"] {
+	  width: 100%;
+	  color: 'white';
+	}
+  
+	button {
+	  width: 100%;
+	}
+  }
+  
+  .camera-off-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
 }
+
