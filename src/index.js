@@ -8,6 +8,9 @@ import MeetingPage from './components/meetingpage';
 import Homepage from './components/hoemapge';
 import MyApp from './App';
 import Root from './root';
+import CreateAccountForm from './components/creataccount';
+import ParentComponent from './components/parentcomponent';
+import RecordedVideos from './components/records';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,9 +19,10 @@ root.render(
      <BrowserRouter>
      {/* Your other components and content can be included here */}
      <Routes>
-       <Route path="/" element={<Homepage />} />
+       <Route path="/" element={<ParentComponent/>} />
        <Route path="/meeting/:meetingId" element={<MeetingPage/>} />
-     
+       <Route path="/user" element={<Homepage/>} />
+       <Route path="/myrecordings" element={<RecordedVideos/>} />
      </Routes>
    </BrowserRouter>
 

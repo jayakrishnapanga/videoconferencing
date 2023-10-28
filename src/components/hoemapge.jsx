@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate ,useLocation} from 'react-router-dom';
+import Carousel from './carousel';
+import { Link } from 'react-router-dom';
 // const Homepage = () => {
 //   const [meetingId, setMeetingId] = useState('');
 
@@ -157,6 +159,8 @@ clientId = Math.random().toString(36).substring(2, 15) + Math.random().toString(
 let requestpath = MEETING_SERVICE + `?clientId=${clientId}`;
 const Homepage = () => {
     const [username, setUsername] = useState(''); // Change state variable name to 'username'
+    const[user, setuser]=useState('')
+    const[userid,setuserid]=useState('')
     const [meetingLink, setMeetingLink] = useState('');
     const [meetingData, setMeetingData] = useState(null);
     const [meetingResponse, setMeetingResponse] = useState(null);
@@ -178,6 +182,9 @@ const Homepage = () => {
         console.log(requestpath)
         setIsMeetingHost(true);
       }
+
+     setuser(localStorage.getItem('username'))
+     setuserid(localStorage.getItem('usrid'))
     }, []);
   
     const handleInputChange = (e) => {
@@ -185,12 +192,25 @@ const Homepage = () => {
     }
   
     const handleMeeting = () => {
+      const sessionid=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      localStorage.setItem('meetingseesionid',false)
       navigate(`/meeting/${username}`, { // Change state variable to 'username'
         state: {
           
           username,
           requestpath,
-          meetingId
+          meetingId,
+          isMeetingHost
+        }
+      });
+    }
+    const handleRecordsclick = () => {
+      // const sessionid=Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      // localStorage.setItem('meetingseesionid',false)
+      console.log(userid)
+      navigate('/myrecordings', { 
+        state: {
+         userid
         }
       });
     }
@@ -216,20 +236,48 @@ const Homepage = () => {
     
     return (
       <div >
-        <label htmlFor="username">Username</label> {/* Change label text to 'Username' */}
+  <div className='flex justify-between'>
+  <div style={{ width: '100%', textAlign: 'center', margin: '0 auto' }}>
+  <label style={{ color: 'white', fontSize: '50px', fontWeight: 'bold', alignItems: 'center' }}>Riktam Meets</label>
+</div>
+<div className=''>
+<ul className="flex">
+<li className="p-5 text-white hover:bg-gray-900 transition duration-300">
+  <button onClick={handleRecordsclick}>
+    myrecordings
+  </button>
+</li>
+  <li className="p-5 text-white hover:bg-gray-900 transition duration-300">
+    <Link to="/">logout</Link>
+  </li>
+</ul>
+  </div>
+
+  </div>
+
+	<div style={{display:'flex',justifyContent:'space-between'}}>
+
+
+ <div style={{width:'100%',textAlign:'center',marginTop:200}}>
+{/* <div><p className='text-gray-50 mb-4'>please enter purpose of meeting to start or create meeting </p></div> */}
         <input 
           type="text" 
           id="username" // Change input field id to 'username'
           value={username} 
+          placeholder='enter meeting hostname'
           onChange={handleInputChange} 
         />
-        {/* <button className='start' onClick={handleJoinButtonClick}>StartMeet</button> */}
-        <button onClick={handleMeeting}>
+        <button onClick={handleMeeting} className='bg-purple-600 hover:bg-purple-400 ml-2 rounded py-2 px-6 text-xl'>
         {isMeetingHost ? 'Start Meeting' : 'Join Meeting'}
       </button>
-        <div style={{ width: '100%', textAlign: 'center', margin: '20px auto' }}>
+ </div>
+        {/* <div style={{ width: '100%', textAlign: 'center', margin: '20px auto' }}>
   <img src="https://www.gstatic.com/meet/user_edu_get_a_link_light_90698cd7b4ca04d3005c962a3756c42d.svg" alt="Image Description" style={{ width: '400px', height: 'auto' }} />
+</div> */}
+<div className='h-2/5 w-2/5 mt-20'>
+<Carousel/>
 </div>
+  </div>
   
         {meetingLink && (
           <div>
