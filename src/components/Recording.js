@@ -198,7 +198,7 @@ const RecordVideoComponent = (props) => {
     const [recording, setRecording] = useState(false);
     const [mediaRecorder, setMediaRecorder] = useState(null);
     const [recordedVideoBlob, setRecordedVideoBlob] = useState(null);
-    const [saved, setSaved] = useState(false);
+    const [saved, setSaved] = useState('');
     const [recordingStopped,setRecordingStopped]=useState(false)
     const { ismeetinghost } = props;
     const startRecording = async () => {
@@ -240,6 +240,7 @@ const RecordVideoComponent = (props) => {
   
     const handleSave = async () => {
         if (recordedVideoBlob) {
+          setSaved('saving'); 
           try {
             const formData = new FormData();
             const userid=localStorage.getItem('usrid')
@@ -247,10 +248,12 @@ const RecordVideoComponent = (props) => {
             formData.append('userId',userid)
             console.log(formData)
             console.log(userid)
-            const response = await axios.post('http://3.7.254.20/:3000/upload', formData);
+            const response = await axios.post('https://videomeetbackend-71415g7w4-jayakrishnapanga.vercel.app/user/upload', formData);
       
             if (response.status === 200) {
-              setSaved(true);
+              console.log(response)
+              // setSaved(true);
+              setSaved('success');
             } else {
               console.error('Error saving video:', response.status);
             }
@@ -288,16 +291,20 @@ const RecordVideoComponent = (props) => {
           <div className='w-1/3'>
             <video src={URL.createObjectURL(recordedVideoBlob)} controls />
             {ismeetinghost &&(
+              <>
                  <button onClick={handleSave} disabled={!recordedVideoBlob || saved}
                  className="px-4 py-2 bg-green-500 text-white rounded-full transition duration-300 hover:bg-green-700 mt-4">
                  Save
                 </button>
+                {saved === 'saving' && <div className='text-slate-50'>Saving your video, please wait...</div>}
+                {saved === 'success' && <div className='text-slate-50'>Video saved successfully!</div>}
+                </>
             )}
           </div>
           </>
         )}
   
-        {saved && <div>Video saved successfully!</div>}
+        {/* {saved && <div>Video saved successfully!</div>} */}
       </div>
     );
   };
