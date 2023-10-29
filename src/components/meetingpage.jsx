@@ -439,7 +439,7 @@ let session;
         <>
         <div className="flex items-center">
       <label className="block font-bold  ml-24">Meeting Link:</label>
-        <span className='text-slate-50'>{`http://localhost:3000/user/?meetingId=${meet}`}</span>
+        <span className='text-slate-50'>{`https://riktammeets.vercel.app/user/?meetingId=${meet}`}</span>
         <button onClick={copyToClipboard} className="ml-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
