@@ -248,7 +248,7 @@ const RecordVideoComponent = (props) => {
             formData.append('userId',userid)
             console.log(formData)
             console.log(userid)
-            const response = await axios.post('https://videomeetbackend-71415g7w4-jayakrishnapanga.vercel.app/user/upload', formData);
+            const response = await axios.post('https://videomeetbackend.vercel.app/user/upload', formData);
       
             if (response.status === 200) {
               console.log(response)

@@ -29,7 +29,7 @@ const Login = () => {
     onSubmit: async (values) => {
       console.log(values);
       try {
-        const response = await axios.post('https://videomeetbackend-71415g7w4-jayakrishnapanga.vercel.app/user/login', values);
+        const response = await axios.post('https://videomeetbackend.vercel.app/user/login', values);
         console.log(response);             
         console.log(response.status);
 

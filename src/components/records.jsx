@@ -58,7 +58,7 @@ const RecordedVideos = () => {
     useEffect(() => {
       const fetchVideos = async () => {
         try {
-          const response = await axios.get(`https://videomeetbackend-71415g7w4-jayakrishnapanga.vercel.app/user/video/${userid}`);
+          const response = await axios.get(`https://videomeetbackend.vercel.app/user/video/${userid}`);
           setLoading(false)
           if (response.status === 200 ) {
             // Set the response data as the video source
