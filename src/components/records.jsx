@@ -258,7 +258,18 @@ return (
     </>
   )}
   {!loading && (!videos || (Array.isArray(videos) && videos.length === 0)) && (
+    
+    <>
     <div className="text-center">No recorded videos found</div>
+    <div>
+    <button
+      onClick={goBack}
+      className="px-4 py-2 bg-blue-500 text-white rounded-full transition duration-300 hover:bg-blue-700 mr-2 mt-2"
+    >
+      Go Back
+    </button>
+  </div>
+    </>
   )}
 </>
 

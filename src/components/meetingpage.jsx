@@ -420,7 +420,7 @@ let session;
       const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
-    const meetLink = `http://localhost:3000/user/?meetingId=${meet}`;
+    const meetLink = `https://riktammeets.vercel.app/user/?meetingId=${meet}`;
     navigator.clipboard.writeText(meetLink);
     setCopied(true);
 
