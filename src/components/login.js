@@ -29,7 +29,7 @@ const Login = () => {
     onSubmit: async (values) => {
       console.log(values);
       try {
-        const response = await axios.post('http://3.7.254.20/:3000/user/login', values);
+        const response = await axios.post('http://ec2-13-233-96-183.ap-south-1.compute.amazonaws.com/443/user/login', values);
         console.log(response);             
         console.log(response.status);
 
