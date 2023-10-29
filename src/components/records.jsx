@@ -58,7 +58,7 @@ const RecordedVideos = () => {
     useEffect(() => {
       const fetchVideos = async () => {
         try {
-          const response = await axios.get(`http://localhost:3001/video/${userid}`);
+          const response = await axios.get(`http://3.7.254.20/:3000/video/${userid}`);
           setLoading(false)
           if (response.status === 200 ) {
             // Set the response data as the video source

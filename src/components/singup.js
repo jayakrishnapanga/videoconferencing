@@ -30,7 +30,7 @@ const Signup = () => {
     onSubmit: async (values) => {
       console.log(values);
       try {
-        const response = await axios.post('http://localhost:3001/user', values);
+        const response = await axios.post('http://3.7.254.20/:3000/user', values);
         console.log(response);             
         console.log(response.status);
 

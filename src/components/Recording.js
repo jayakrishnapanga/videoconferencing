@@ -247,7 +247,7 @@ const RecordVideoComponent = (props) => {
             formData.append('userId',userid)
             console.log(formData)
             console.log(userid)
-            const response = await axios.post('http://localhost:3001/upload', formData);
+            const response = await axios.post('http://3.7.254.20/:3000/upload', formData);
       
             if (response.status === 200) {
               setSaved(true);
