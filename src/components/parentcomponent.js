@@ -22,7 +22,7 @@ const ParentComponent = () => {
     return (
       <>
        <div style={{ width: '100%', textAlign: 'center', margin: '0 auto' }}>
-  <label style={{ color: 'white', fontSize: '50px', fontWeight: 'bold', alignItems: 'center' }}>Riktam Meets</label>
+  <label style={{ color: 'white', fontSize: '50px', fontWeight: 'bold', alignItems: 'center' }}>Mansoor Meets</label>
 </div>
         <div className="grid grid-cols-2">
         <div className="col-span-1 ml-60 mt-28">
